@@ -70,7 +70,9 @@ def twitter_reply(request):
                         print('This tweet is order')
                         try:
                             now = datetime.datetime.now()
-                            api.update_status(status="@" + 'tweet test' + str(now))
+                            twitter_id=tweet["id_str"]
+                            twitter_user=tweet["user"]["screen_name"]
+                            api.update_status(status='@' + str(twitter_user) + '\n' + str(now), in_reply_to_status_id=twitter_id)
                             print('Have tweeted')
                         except TwythonError as e:
                             print('ERROR')
